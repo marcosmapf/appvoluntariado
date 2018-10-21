@@ -9,9 +9,9 @@ A aplicação utilizará as seguintes tecnologias:
 * Backend em Python utilizando o Framework Django Rest Framework
 * Frontend em Angular6
 
-##Configurando Ambiente da Aplicação
+## Configurando Ambiente da Aplicação
 
-###WINDOWS
+### WINDOWS
 
 * Instale o Python (versão 3.6.5) e garanta que, durante a instalação, você marque nas configurações avançadas a adição do Python à variável PATH do sistema, e instale o Python para todos os usuários
 * Instale O PostgreSQL (recomendado: versão 9.5.13) e crie um usuário com username postgres e senha postgres (você pode criar com credenciais diferentes, mas elas terão de ser modificadas no arquivos settings.py do projeto)
@@ -25,6 +25,6 @@ A aplicação utilizará as seguintes tecnologias:
 * Execute os comandos python manage.py makemigrations e python manage.py migrate para criar em seu banco de dados as tabelas do aplicativo*
 * Execute o comando python manage.py runserver para executar o servidor
 
-##LINUX
+## LINUX
 
 * TODO
