@@ -6,6 +6,7 @@ from .models import Company
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'trading_name',
         'company_sector',
         'company_location',
@@ -17,7 +18,6 @@ class CompanyAdmin(admin.ModelAdmin):
     list_filter = (
         'trading_name',
         'company_sector',
-        'created_at',
     )
 
     search_fields = ('trading_name', 'company_sector', 'email')

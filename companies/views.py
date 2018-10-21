@@ -1,10 +1,10 @@
 from rest_framework import generics
-#from users.models import CustomUser
 from .models import Company
 from .serializers import CompanySerializer
 
 class CompanyMixin:	
 	serializer_class = CompanySerializer
+	permission_classes = ()
 
 	def get_queryset(self):
 		return Company.objects.all()

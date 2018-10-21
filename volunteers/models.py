@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from volunteeringareas.models import VolunteeringArea
 
 class Volunteer(models.Model):
 
@@ -21,13 +22,18 @@ class Volunteer(models.Model):
 	description = models.TextField(max_length=500)	
 	photo = models.ImageField(null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
-	interest_areas = models.CharField(max_length=255, blank=True, null=True)
+	interest_areas = models.ManyToManyField(VolunteeringArea)
 	
 	class Meta:
 		verbose_name_plural = "Volunteers"
+		ordering = ("first_name", "last_name")
 
 	def __str__(self):
 	    return self.first_name + self.last_name
 
 	def get_absolute_url(self):
 	    return reverse('volunteers:volunteer-detail', kwargs={'pk': self.id})
+
+
+
+#curl -i -X POST -H "Content-Type:application/json" http://localhost:8000/v1/volunteers -d '{"first_name":"Messias","last_name":"Martins","state":"MG","city":"Belo Horizonte","gender","MA","phone":"31992391318","email":"messiasmartins@outlook.com","description":"Isso e um teste de requisicao POST","interest_areas":"Todas"}'

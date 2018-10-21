@@ -4,6 +4,7 @@ from .serializers import VolunteerSerializer
 
 class VolunteerMixin:	
 	serializer_class = VolunteerSerializer
+	permission_classes = ()
 
 	def get_queryset(self):
 		return Volunteer.objects.all()
