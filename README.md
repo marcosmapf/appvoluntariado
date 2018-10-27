@@ -15,6 +15,7 @@ A aplicação utilizará as seguintes tecnologias:
 
 * Instale o Python (versão 3.6.5) e garanta que, durante a instalação, você marque nas configurações avançadas a adição do Python à variável PATH do sistema, e instale o Python para todos os usuários
 * Instale O PostgreSQL (recomendado: versão 9.5.13) e crie um usuário com username postgres e senha postgres (você pode criar com credenciais diferentes, mas elas terão de ser modificadas no arquivos settings.py do projeto)
+* Crie um novo banco de dados chamado appvol. Esse banco de dados deve possuir a collation e character_type Portuguese_Brazil_1252 e tablespace pg_default. Crie atravez da linha de comando ou do PgAdmin.
 * Crie uma pasta para o projeto e acesse a pasta
 * Instale o Virtualenv através do PIP na linha de comando (pip install virtualenv)
 * Crie um ambiente virtual na pasta do projeto através da linha de comando (virtualenv venv)
