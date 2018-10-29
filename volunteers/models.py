@@ -22,14 +22,14 @@ class Volunteer(models.Model):
 	description = models.TextField(max_length=500)	
 	photo = models.ImageField(null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
-	interest_areas = models.ManyToManyField(VolunteeringArea)
+	interest_areas = models.ManyToManyField(VolunteeringArea, blank=True)
 	
 	class Meta:
 		verbose_name_plural = "Volunteers"
 		ordering = ("first_name", "last_name")
 
 	def __str__(self):
-	    return self.first_name + self.last_name
+	    return self.first_name + ' ' + self.last_name
 
 	def get_absolute_url(self):
 	    return reverse('volunteers:volunteer-detail', kwargs={'pk': self.id})
