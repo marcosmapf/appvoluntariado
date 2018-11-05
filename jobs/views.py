@@ -11,9 +11,14 @@ class JobMixin:
 	permission_classes = ()
 
 	def get_queryset(self):
-		job_area = self.request.job_areas
-		return JobModel.objects.filter(job_areas=job_area)
-
+		queryset = JobModel.objects.all()
+		job_area = self.request.query_params.get('job_areas', None)
+		company = self.request.query_params.get('company', None)
+		if job_area is not None:
+			queryset = queryset.filter(job_areas=job_area)
+		if company is not None:
+			queryset = queryset.filter(company=company)
+		return queryset
 
 class JobRetrieveUpdate(JobMixin, generics.RetrieveUpdateAPIView):
     pass
