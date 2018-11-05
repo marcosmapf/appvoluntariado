@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class VolunteeringareasConfig(AppConfig):
-    name = 'volunteeringareas'
+    name = 'Volunteeringareas'

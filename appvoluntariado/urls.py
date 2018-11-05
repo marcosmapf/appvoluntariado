@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^v1/', include('users.urls')),
     url(r'^v1/', include('companies.urls')),
     url(r'^v1/', include('volunteers.urls')),
+    url(r'^v1/', include('volunteeringareas.urls')),
     url(r'^v1/user-auth/', include('rest_framework.urls')),
     url(r'^favicon\.ico$', favicon_view),
     #url(r'^v1/rest-auth/', include('rest_auth.urls')),

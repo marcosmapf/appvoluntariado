@@ -4,6 +4,7 @@ class VolunteeringArea(models.Model):
 
 	title = models.CharField(max_length=100)
 	description = models.TextField(max_length=512)
+	picture = models.ImageField(blank=True, null=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	is_active = models.BooleanField(default=False)
 

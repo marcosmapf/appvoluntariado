@@ -46,12 +46,13 @@ class VolunteerRetrieveUpdate(VolunteerMixin, generics.RetrieveUpdateAPIView):
 		volunteer = serializer.save()
 		volunteer.interest_areas.add(*interest_areas)
 
+
 class VolunteerListCreate(VolunteerMixin, generics.ListCreateAPIView):
 
 	parser_classes = (JSONParser,)
 
 	def create(self, request, *args, **kwargs):
-		interest_areas = request.data.pop('interest_areas')
+		interest_areas = request.data.pop('interest_areas', [])
 		serializer = self.get_serializer(data=request.data)
 		serializer.is_valid(raise_exception=True)
 		self.perform_create(serializer, interest_areas)

@@ -41,11 +41,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'corsheaders',
-    'board',
     'companies',
     'jobs',
-    'volunteers',
     'volunteeringareas',
+    'volunteers',
     'users'
 ]
 

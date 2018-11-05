@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from companies.models import Company
+from volunteers.models import Volunteer
 from volunteeringareas.models import VolunteeringArea
 
 class Job(models.Model):
@@ -16,7 +17,7 @@ class Job(models.Model):
 	company = models.ForeignKey(Company, on_delete=models.CASCADE)
 	title = models.CharField(max_length=100)
 	description = models.TextField(max_length=510)
-	photo = models.ImageField()
+	photo = models.ImageField(blank=True, null=True)
 	start_date = models.DateTimeField()
 	finish_date = models.DateTimeField()
 	recurrency = models.CharField(max_length=2, choices=RECURRENCY_CHOICES)
@@ -30,7 +31,7 @@ class Job(models.Model):
 	extra_location = models.CharField(max_length=100, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	#updated_at = models.DateTimeField()
-	expiration_date = models.DateTimeField(auto_now_add=True)
+	expiration_date = models.DateTimeField(auto_now_add=True) #remove auto_now_add later
 	is_active = models.BooleanField(default=False)
 	
 	class Meta:
@@ -44,3 +45,27 @@ class Job(models.Model):
 
 	def get_absolute_url(self):
 	    return reverse('jobs:job-detail', kwargs={'pk': self.id})
+
+
+
+class JobMatch(models.Model):
+
+	company = models.ForeignKey(Company, on_delete=models.CASCADE)		    
+	volunteer = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
+	job_areas = models.ForeignKey(VolunteeringArea)
+	attended_job = models.NullBooleanField()
+	company_commentary = models.TextField(max_length=510, blank=True)
+	volunteer_commentary = models.TextField(max_length=510, blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name_plural = "Job Matchs"
+
+	def __str__(self):
+		return 'Empresa: ' + str(self.company) + '/ Voluntário: ' + str(self.volunteer)
+
+	#def slug(self):
+		#return slugify(self.trading_name)	    
+
+	def get_absolute_url(self):
+		return reverse('jobs:job-matchs-detail', kwargs={'pk': self.id})	
