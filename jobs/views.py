@@ -14,9 +14,11 @@ class JobMixin:
 		queryset = JobModel.objects.all()
 		job_area = self.request.query_params.get('job_areas', None)
 		company = self.request.query_params.get('company', None)
-		if job_area is not None:
+		if job_area and company is not None:
+			queryset = queryset.filter(company=company, job_areas=job_area)
+		elif job_area is not None:
 			queryset = queryset.filter(job_areas=job_area)
-		if company is not None:
+		elif company is not None:
 			queryset = queryset.filter(company=company)
 		return queryset
 
@@ -46,7 +48,17 @@ class JobMatchMixin:
 	permission_classes = ()
 
 	def get_queryset(self):
-		return JobMatchModel.objects.all()
+		queryset = JobMatchModel.objects.all()
+		volunteer = self.request.query_params.get('volunteer', None)
+		company = self.request.query_params.get('company', None)
+		if volunteer and company is not None:
+			queryset = queryset.filter(volunteer=volunteer, company=company)		
+		elif volunteer is not None:
+			queryset = queryset.filter(volunteer=volunteer)
+		elif company is not None:
+			queryset = queryset.filter(company=company)
+		return queryset
+
 
 class JobMatchRetrieveUpdate(JobMatchMixin, generics.RetrieveUpdateAPIView):
 	pass
